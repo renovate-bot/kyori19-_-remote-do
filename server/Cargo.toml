@@ -1,0 +1,16 @@
+[package]
+name = "remote-do-server"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.95"
+env_logger = "=0.11.6"
+log = "=0.4.25"
+remote-do-shared = { path = "../shared" }
+shell-words = "1.1.0"
+tokio = { version = "1.43.0", features = ["process", "rt-multi-thread", "signal"] }
+tokio-util = "=0.7.13"
+wtransport = "=0.5.0"
