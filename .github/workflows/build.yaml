@@ -1,0 +1,33 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - run: rustup toolchain install nightly
+
+      - run: cargo +nightly test
+
+      - run: cargo +nightly build --release --bins --artifact-dir target/release/bin -Z unstable-options
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: remote-do
+          path: target/release/bin/*
