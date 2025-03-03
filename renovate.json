@@ -2,5 +2,24 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
+  ],
+  "customDatasources": {
+    "rust-nightly": {
+      "defaultRegistryUrlTemplate": "https://renovate-rust-nightly.phi-ag.workers.dev/"
+    }
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": [
+        "^rust-toolchain.toml$"
+      ],
+      "matchStrings": [
+        "channel = \"nightly-(?<currentValue>.+?)\"\\n"
+      ],
+      "versioningTemplate": "regex:^(?<major>\\d{4})-(?<minor>\\d{2})-(?<patch>\\d{2})$",
+      "datasourceTemplate": "custom.rust-nightly",
+      "depNameTemplate": "rust-nightly"
+    }
   ]
 }
