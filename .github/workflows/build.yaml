@@ -8,7 +8,18 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: aarch64-apple-darwin
+            os: macos-latest
+          - target: x86_64-unknown-linux-gnu
+            os: ubuntu-latest
+          - target: x86_64-unknown-linux-musl
+            os: ubuntu-latest
+
+    runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v4
@@ -16,18 +27,26 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: |
+            ~/.rustup
+          key: ${{ matrix.target }}-rustup-${{ hashFiles('**/rust-toolchain.toml') }}
+
+      - uses: actions/cache@v4
+        with:
+          path: |
             ~/.cargo/registry
             ~/.cargo/git
             target
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          key: ${{ matrix.target }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
-      - run: rustup toolchain install nightly
-
-      - run: cargo +nightly test
-
-      - run: cargo +nightly build --release --bins --artifact-dir target/release/bin -Z unstable-options
+      - name: Build and test
+        run: |
+          rustup target add ${{ matrix.target }}
+          cargo install cross
+          cross test --target ${{ matrix.target }}
+          cross build --release --target ${{ matrix.target }} --bins --artifact-dir target/release/bin -Z unstable-options
+          ls target/release/bin | xargs -I {} mv target/release/bin/{} target/release/bin/{}-${{ matrix.target }}
 
       - uses: actions/upload-artifact@v4
         with:
-          name: remote-do
+          name: remote-do-${{ matrix.target }}
           path: target/release/bin/*
