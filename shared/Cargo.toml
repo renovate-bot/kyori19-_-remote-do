@@ -8,4 +8,4 @@ anyhow = "1.0.89"
 tokio = { version = "1.43.0", features = ["io-std", "io-util", "process"] }
 tokio-fd = "=0.3.0"
 tokio-util = "=0.7.13"
-wtransport = { version = "=0.5.0", features = ["quinn"] }
+wtransport = { version = "=0.6.0", features = ["quinn"] }
