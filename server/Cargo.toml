@@ -8,7 +8,7 @@ edition = "2021"
 [dependencies]
 anyhow = "1.0.97"
 env_logger = "=0.11.7"
-log = "=0.4.27"
+log = "=0.4.28"
 remote-do-shared = { path = "../shared" }
 shell-words = "1.1.0"
 tokio = { version = "1.44.1", features = ["process", "rt-multi-thread", "signal"] }
