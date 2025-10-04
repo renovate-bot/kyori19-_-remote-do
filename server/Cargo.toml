@@ -7,7 +7,7 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1.0.97"
-env_logger = "=0.11.7"
+env_logger = "=0.11.8"
 log = "=0.4.27"
 remote-do-shared = { path = "../shared" }
 shell-words = "1.1.0"
