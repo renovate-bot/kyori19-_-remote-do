@@ -6,10 +6,10 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-anyhow = "1.0.97"
+anyhow = "1.0.100"
 remote-do-shared = { path = "../shared" }
 shell-words = "1.1.0"
-tokio = { version = "1.44.1", features = ["io-std", "rt-multi-thread"] }
+tokio = { version = "1.47.1", features = ["io-std", "rt-multi-thread"] }
 tokio-fd = "=0.3.0"
-tokio-util = "=0.7.14"
+tokio-util = "=0.7.16"
 wtransport = { version = "=0.6.1", features = ["dangerous-configuration"] }

@@ -4,8 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-anyhow = "1.0.97"
-tokio = { version = "1.44.1", features = ["io-std", "io-util", "process"] }
+anyhow = "1.0.100"
+tokio = { version = "1.47.1", features = ["io-std", "io-util", "process"] }
 tokio-fd = "=0.3.0"
-tokio-util = "=0.7.14"
+tokio-util = "=0.7.16"
 wtransport = { version = "=0.6.1", features = ["quinn"] }
