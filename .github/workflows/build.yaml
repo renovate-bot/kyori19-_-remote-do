@@ -46,7 +46,7 @@ jobs:
           cross build --release --target ${{ matrix.target }} --bins --artifact-dir target/release/bin -Z unstable-options
           ls target/release/bin | xargs -I {} mv target/release/bin/{} target/release/bin/{}-${{ matrix.target }}
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: remote-do-${{ matrix.target }}
           path: target/release/bin/*
