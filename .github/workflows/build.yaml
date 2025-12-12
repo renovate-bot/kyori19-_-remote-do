@@ -24,13 +24,13 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: |
             ~/.rustup
           key: ${{ matrix.target }}-rustup-${{ hashFiles('**/rust-toolchain.toml') }}
 
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: |
             ~/.cargo/registry
