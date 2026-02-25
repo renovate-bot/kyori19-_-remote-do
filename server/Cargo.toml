@@ -13,4 +13,4 @@ remote-do-shared = { path = "../shared" }
 shell-words = "1.1.0"
 tokio = { version = "1.47.1", features = ["process", "rt-multi-thread", "signal"] }
 tokio-util = "=0.7.16"
-wtransport = "=0.6.1"
+wtransport = "=0.7.0"
